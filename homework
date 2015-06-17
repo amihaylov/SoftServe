@@ -1,0 +1,32 @@
+#!/bin/bash
+function printDash(){
+  for i in `seq 1 50`;
+  do
+    printf "-"
+  done
+}
+printDash
+
+printf "\n Number\t| First task\t| Time\t\t|\n"
+printDash
+
+if [ $(( $# % 2)) -eq 0 ]; then
+
+  index=1
+  counter=1
+  for arg in "$@"
+  do
+    if [ $(( $index % 2 )) -eq 0 ]; then
+      printf " $arg\t\t|\n"
+      printDash
+      let "counter++"
+    else
+      printf "\n $counter\t|"
+      printf " $arg\t\t|"
+    fi
+    let "index++"
+  done
+else
+  echo "Arguments should be even number!"
+fi
+printf "\n"
